@@ -1,12 +1,12 @@
-from django.contrib import admin
-from django.urls import path, include
+from django.urls import path
 from django.http import HttpResponse
 
-def mi_vista(xx):
-    return HttpResponse("<h2>Encuentra tu camino hacia el bienestar<h1>") 
+from .views import home_view, terapias_view, search_view, create_view
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("", mi_vista),
-    path("bookingpsico/", include("bookingpsico.urls")),
+    
+    path("", home_view),
+    path("terapias/", terapias_view, name = "booking"),
+    path("buscar/<nombre_de_usuario>", search_view),
+    path("crear/<nombre_de_usuario>/<sala>", create_view),
 ]
