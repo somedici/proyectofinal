@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Encuentra tu camino hacia el bienestar{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #528bc8;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #4178a8; /* Darker blue than the header */
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #ffffff;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #365f7a;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            margin-top: 20px;
+            box-shadow: 2px 2px 5px #cccccc;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Encuentra tu camino hacia el bienestar{% endblock %}</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/about">Acerca de</a>
+            <a href="/services">Servicios</a>
+            <a href="/contact">Contacto</a>
+        </nav>
+    </header>
+    <div class="container">
+        {% block content %}
+        <section>
+            <div class="card">
+                <h2>Tipos de terapias:</h2>
+                <ul>
+                    <li>Terapia Cognitivo-Conductual (TCC)</li>
+                    <li>Terapia Psicodinámica</li>
+                    <li>Terapia de Pareja</li>
+                    <li>Terapia Familiar</li>
+                    <li>Terapia de Grupo</li>
+                    <li>Terapia Gestalt</li>
+                </ul>
+            </div>
+        </section>
+        {% endblock %}
+    </div>
+</body>
+</html>
