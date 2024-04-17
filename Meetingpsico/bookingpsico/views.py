@@ -1,24 +1,21 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from .models import Reserva
 
-def home_view(xx):
-    return HttpResponse("<h2>Encuentra tu camino hacia el bienestar<h1>") 
+def home_view(request):
+    return render(request,"home.html")
 
 def terapias_view(request):
-   contexto_dict = {
-        "Terapias": ["Terapia Cognitivo-Conductual (TCC)", 
-                     "Terapia Psicodinámica", 
-                     "Terapia de Pareja:", 
-                     "Terapia Familiar",
-                     "Terapia de Grupo",
-                     "Terapia Gestalt",
-                     ]
-    }
-   return render(request,"terapias.html", contexto_dict) 
+    reservas = Reserva.objects.all()
+    contexto_dict = {"Reservas": reservas}
+    return render(request,"terapias.html", contexto_dict) 
 
-def search_view(request):
-        return HttpResponse("<h2>Search<h1>") 
- 
-def create_view(request):
-        return HttpResponse("<h2>Encuentra tu camino hacia el bienestar<h1>") 
+def search_view(request, nombre_de_usuario):
+    reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
+    contexto_dict = {"reservas": reservas_del_usuario}
+    return render(request, "reservas.html", contexto_dict)
+
+def create_view(request, nombre_de_usuario, terapia):
+    Reserva = Reserva.objects.create(nombre_de_usuario,terapia)
+    HttpResponse("<h2>Se ha creado con éxito{reserva}<h1>") 
 
