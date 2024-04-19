@@ -13,6 +13,9 @@ def terapias_view(request):
     contexto_dict = {"Reservas": reservas}
     return render(request,"terapias.html", contexto_dict) 
 
+def terapeutas(request):
+    return render(request, "terapeutas.html")
+
 def search_view(request, nombre_de_usuario):
     reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
     contexto_dict = {"reservas": reservas_del_usuario}
