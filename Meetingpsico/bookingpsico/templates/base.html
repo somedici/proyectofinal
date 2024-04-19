@@ -1,42 +1,115 @@
-{% load static %}
+{% extends 'home.html' %}
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %} xxxxx {% endblock title %}</title>
-    <!-- Bootstrap CSS CDN (Bootstrap 4 used as an example) -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>{% block title %}  TERAPP
+         Encuentra tu camino hacia el bienestar Psicológico{% endblock %}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #434e5a;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #465a6c; /* Darker blue than the header */
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: #ffffff;
+            padding: 10px 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #5e7585;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .card {
+            background: #ffffff;
+            border: 1px solid #ddd;
+            padding: 10px 20px;
+            margin-top: 20px;
+            box-shadow: 2px 2px 5px #cccccc;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/bookings">Reservas</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/bookings/list">Todas las Reservas</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'bookings-list' %}">XXXXXX</a>
-                </li>
-            </ul>
-        </div>
-    </nav>
-    <!-- Main content -->
-    <div class="container mt-4">
+    <header>
+        <h1>{% block header %}Encuentra tu camino hacia el bienestar Psicológico{% endblock %}</h1>
+        <nav>
+            <a href="/">Inicio</a>
+            <a href="/about">Acerca de</a>
+            <a href="/services">Servicios</a>
+            <a href="/contact">Contacto</a>
+        </nav>
+    </header>
+    <div class="container">
         {% block content %}
-        <!-- Content goes here -->
-        {% endblock content %}
+        <section>
+            <div class="card">
+                <h2>Tipos de terapias:</h2>
+                <ul>
+                    <div class="container">
+                        <div class="card">
+                            <h2>Terapia Cognitivo-Conductual (TCC)</h2>
+                            <p JUA </p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia Psicodinámica</h2>
+                            <p>Descubre tus motivaciones subconscientes.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia Humanista</h2>
+                            <p>Potencia tu crecimiento personal.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia de Pareja</h2>
+                            <p>Fortalece la relación con tu pareja.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia Familiar</h2>
+                            <p>Mejora la dinámica y comunicación familiar.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia de Grupo</h2>
+                            <p>Encuentra apoyo y comprensión en comunidad.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Terapia Gestalt</h2>
+                            <p>Aumenta tu conciencia del momento presente.</p>
+                        </div>
+                        <div class="card">
+                            <h2>Psicoterapia Integrativa</h2>
+                            <p>Combina elementos de varias terapias adaptadas a ti.</p>
+                        </div>
+        </section>
+        {% endblock %}
     </div>
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
-
