@@ -2,26 +2,41 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Reserva
 
-def reserva(request):
-    return render(request, "reservas.html")
+# En tu archivo views.py
+from django.shortcuts import render, redirect
+from .models import Reserva  # Importa tu modelo de reserva
+
+def crear_reservas(request):
+    if request.method == 'POST':
+        nombre_usuario = request.POST['nombre_usuario']
+        fecha = request.POST['fecha']
+        hora = request.POST['hora']
+        tipo_terapia = request.POST['tipo_terapia']
+        terapeuta = request.POST['terapeuta']
+        
+        # Crea una nueva instancia de Reserva y guárdala en la base de datos
+        reserva = Reserva(nombre_usuario=nombre_usuario, fecha=fecha, hora=hora, tipo_terapia=tipo_terapia, terapeuta=terapeuta)
+        reserva.save()
+        # Redirecciona a una página de confirmación o a donde desees
+        return redirect('/bookingpsico/')
+    
+    return render(request, 'reservas.html')
 
 def home_view(request):
     return render(request,"home.html")
 
 def terapias_view(request):
-    reservas = Reserva.objects.all()
-    contexto_dict = {"Reservas": reservas}
-    return render(request,"terapias.html", contexto_dict) 
+       return render(request,"terapias.html") 
 
 def terapeutas(request):
     return render(request, "terapeutas.html")
 
-def search_view(request, nombre_de_usuario):
-    reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre_de_usuario).all()
+def login(request):
+    return render(request, "login.html")
+
+def search_view(request, nombre):
+    reservas_del_usuario = Reserva.objects.filter(nombre_de_usuario=nombre).all()
     contexto_dict = {"reservas": reservas_del_usuario}
     return render(request, "reservas.html", contexto_dict)
 
-def create_view(request, nombre_de_usuario, terapia):
-    Reserva = Reserva.objects.create(nombre_de_usuario,terapia)
-    HttpResponse("<h2>Se ha creado con éxito{reserva}<h1>") 
 
