@@ -14,7 +14,7 @@
             color: #333;
         }
         header {
-            background: #528bc8;
+            background: #7592b3;
             color: #ffffff;
             padding: 10px 20px;
             text-align: center;
@@ -45,9 +45,9 @@
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/bookingpsico">Reservas de terapias</a>
-        <a class="navbar-brand" href="/bookingpsico">Terapias</a>
-        <a class="navbar-brand" href="/bookingpsico">Terapeutas</a>
+        <a class="navbar-brand" href="/bookingpsico/crear_reserva">Reservas de terapias</a>
+        <a class="navbar-brand" href="/bookingpsico/terapias">Terapias</a>
+        <a class="navbar-brand" href="/bookingpsico/terapeutas">Terapeutas</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -57,14 +57,14 @@
                     <a class="nav-link" href="/bookingpsico/list">Todas las Reservas</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/bookingpsico/Login">Login</a>
+                    <a class="nav-link" href="/bookingpsico/login">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/bookingpsico/Logout">Logout</a>
+                    <a class="nav-link" href="/bookingpsico/logout">Logout</a>
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav>    
     <div class="container mt-4">
         {% block content %}
         <header>
@@ -73,55 +73,38 @@
         </header>
         <div class="card">
             <h2>Terapia Cognitivo-Conductual (TCC)</h2>
-            <p>Enfrenta tus pensamientos para mejorar tus acciones.</p>
         </div>
        <div class="card">
         <h2>Terapia Psicodinámica</h2>
-        <p>Descubre tus motivaciones subconscientes.</p>
        </div>
         <div class="card">
         <h2>Terapia Humanista</h2>
-        <p>Potencia tu crecimiento personal.</p>
         </div>
     <div class="card">
         <h2>Terapia de Pareja</h2>
-        <p>Fortalece la relación con tu pareja.</p>
     </div>
     <div class="card">
         <h2>Terapia Familiar</h2>
-        <p>Mejora la dinámica y comunicación familiar.</p>
     </div>
     <div class="card">
         <h2>Terapia de Grupo</h2>
-        <p>Encuentra apoyo y comprensión en comunidad.</p>
     </div>
     <div class="card">
         <h2>Terapia Gestalt</h2>
-        <p>Aumenta tu conciencia del momento presente.</p>
     </div>
     <div class="card">
         <h2>Psicoterapia Integrativa</h2>
-        <p>Combina elementos de varias terapias adaptadas a ti.</p>
     </div>
         {% endblock content %}
-    </div>
-      <div class="card mt-4">
-            <div class="card-body">
-                <h5 class="card-title">Inicio de Sesión</h5>
-                <form action="/login" method="post">
-                    {% csrf_token %}
-                    <div class="form-group">
-                        <label for="username">Nombre de Usuario:</label>
-                        <input type="text" class="form-control" id="username" name="username" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="password">Contraseña:</label>
-                        <input type="password" class="form-control" id="password" name="password" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-                </form>
+        <div class="card mt-4">
+            <div class="card-body d-flex justify-content-between">
+                <button class="btn btn-link">Sobre nosotros</button>
+                <button class="btn btn-link">Nuestra historia</button>
+                <button class="btn btn-link">Blog</button>
+                <button class="btn btn-link">Email</button>
+                <button class="btn btn-link">Privacy Policies</button>
             </div>
-        </div>
+        </div>        
     </div>
     <!-- Bootstrap JS, Popper.js, and jQuery -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

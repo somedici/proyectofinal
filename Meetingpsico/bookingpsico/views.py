@@ -6,7 +6,7 @@ from .models import Reserva
 from django.shortcuts import render, redirect
 from .models import Reserva  # Importa tu modelo de reserva
 
-def crear_reservas(request):
+def crear_reserva(request):
     if request.method == 'POST':
         nombre_usuario = request.POST['nombre_usuario']
         fecha = request.POST['fecha']
