@@ -12,7 +12,7 @@
     </header>
     <div class="card">
         <div class="card-body">
-            <form action="/crear_reserva/" method="post">
+            <form action="{% url 'crear_reserva' %}" method="post">
                 {% csrf_token %}
                 <div class="form-group">
                     <label for="nombre_usuario">Nombre del usuario:</label>

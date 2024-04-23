@@ -1,0 +1,41 @@
+
+{% extends 'home.html' %}
+
+{% block title %}
+    Reservas Guardadas
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <header>
+        <h1>Reservas Guardadas</h1>
+        <p>A continuación se muestran todas las reservas:</p>
+    </header>
+    <div class="card">
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Nombre del Usuario</th>
+                        <th>Fecha</th>
+                        <th>Hora</th>
+                        <th>Tipo de Terapia</th>
+                        <th>Terapeuta</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reserva in todas_las_reservas %}
+                    <tr>
+                        <td>{{ reserva.nombre_usuario }}</td>
+                        <td>{{ reserva.fecha }}</td>
+                        <td>{{ reserva.hora }}</td>
+                        <td>{{ reserva.tipo_terapia }}</td>
+                        <td>{{ reserva.terapeuta }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}

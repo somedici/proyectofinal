@@ -1,7 +1,15 @@
 from django import forms
-from .models import Reserva, Sala
+from .models import Reserva, Terapeuta
 
+class ReservaCreateForm(forms.ModelForm):
+    class Meta:
+        model = Reserva
+        fields = ["nombre_usuario",
+                  "fecha", 
+                  "hora", 
+                  "tipo_terapia", 
+                  "terapeuta"]
 
-class Reserva(forms.Form):
-    nombre= forms.CharField(max_length=50, required=True, label="Ingresar nombre de usuario")
-    correo_electrónico = forms.CharField(max_length=50, required=True, label="Ingresar tu correo electrónico")
+class LoginForm(forms.Form):
+    username = forms.CharField(max_length=150)
+    password = forms.CharField(widget=forms.PasswordInput)
