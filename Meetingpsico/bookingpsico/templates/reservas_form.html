@@ -1,0 +1,29 @@
+{% extends 'home.html' %}
+
+{% block title %}
+    Crear Reserva
+{% endblock title %}
+
+{% block content %}
+<div class="container mt-4">
+    <header>
+        <h1>Crear una Reserva</h1>
+        <p>Complete el formulario para agendar una cita.</p>
+    </header>
+    <div class="card">
+        <div class="card-body">
+            <form action="{% url 'crear_reserva' %}" method="post">
+                {% csrf_token %}
+
+
+                
+                {{ create_form.as_p }}
+               
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Crear Reserva</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock content %}

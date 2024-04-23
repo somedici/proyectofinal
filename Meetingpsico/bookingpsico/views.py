@@ -8,7 +8,7 @@ from .forms import ReservaCreateForm, LoginForm
 def crear_reserva(request):
     if request.method == "GET":
         contexto = {"create_form": ReservaCreateForm()}
-        return render(request, "reservas.html", contexto)
+        return render(request, "reservas_form.html", contexto)
     
     elif request.method == 'POST':
         form = ReservaCreateForm(request.POST)
@@ -25,8 +25,10 @@ def crear_reserva(request):
                 tipo_terapia=tipo_terapia, 
                 terapeuta=terapeuta)
             nueva_reserva.save()
-        
-        return detail_view(request, nueva_reserva.id)
+            return detail_view(request, nueva_reserva.id)
+        else:
+            contexto = {"create_form": form }
+            return render(request, "reservas_form.html", contexto)
 
 def home_view(request):
     return render(request,"home.html")
