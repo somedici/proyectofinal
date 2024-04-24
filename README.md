@@ -3,9 +3,10 @@ Meeting Psico -> App Booking Psico
 Mi proyecto final se denomina: "Meeting Psico -> App Booking Psico". Su objetivo principal es proporcionar una primera aproximación a una aplicación para reservar sesiones con terapeutas en línea. La idea surgió con la intención de ofrecer un espacio gratuito para el cuidado de la salud mental, accesible para todos, y al mismo tiempo dar a conocer las diversas opciones terapéuticas disponibles.
 
 Aún quedan aspectos por revisar y mejorar, especialmente relacionados con la gestión de terapeutas, sus horarios y el proceso de reservas. Estoy comprometida con la continua evolución y mejora de esta aplicación.
-La página principal muestra el 'home' de la aplicación con las distintas opciones de terapias disponibles online. Luego, en la nav bar se pueden encontrar 
 
-Acontinuación detallo el paso a paso que realicé para poder inciar el proyecto.
+La página principal muestra el 'home' de la aplicación con las distintas opciones de terapias disponibles online. En la barra de navegación hacia la derecha están los enlaces 'Log in' y 'Log out'. Luego, en la barra de navegación hacia la izquierda, se puede acceder a 'Crear Reserva', visualizar todas las reservas en 'Todas las Reservas', explorar las terapias en 'Terapias' y conocer algunos de los terapeutas en 'Terapeutas'.
+
+A continuación detallo el paso a paso que realicé para poder inciar el proyecto:
 1 - Inicié mi proyecto ejecutando el siguiente comando: <django-admin startproject Meetingpsico>
 2 - Creé una nueva aplicación, ejecutando: <python manage.py startapp>
 3 - Levanté el servidor para testear el funcionamiento con: <python manage.py runserver>
