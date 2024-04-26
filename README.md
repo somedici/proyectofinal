@@ -8,11 +8,13 @@ La página principal muestra el 'home' de la aplicación con las distintas opcio
 
 A continuación detallo el paso a paso que realicé para poder inciar el proyecto:
 1 - Inicié mi proyecto ejecutando el siguiente comando: <django-admin startproject Meetingpsico>
-2 - Creé una nueva aplicación, ejecutando: <python manage.py startapp>
-3 - Levanté el servidor para testear el funcionamiento con: <python manage.py runserver>
-4 - Definí las vista en el archivo 'views.py'
-5 - Conecté las vistas a las URLs (general y las de mi aplicación)
+2 - Levanté el servidor para testear el funcionamiento con: <python manage.py runserver>
+3 - Creé una nueva aplicación, ejecutando: <python manage.py startapp bookingpsico>
+4 - Creé un archivo 'Urls.py' en mi nueva aplicación 'bookingpsico'
+4 - Definí las URLs generales y las de mi aplicación
+5 - Definí las vista en el archivo 'views.py'
 6 - Definí los templates que son el diseño de mis views.py
+6b - Conecte las views en las URLs.
 7 - Definí dos modelos de mi aplicación en el archivo 'models.py'
 8 - Migré los datos a mi base de datos, ejecutando los siguiente comandos: <python manage.py makemigrations>, <python manage.py migrate>
 9 - Configuré el admin con un 'superadmin' para administrar los datos.
