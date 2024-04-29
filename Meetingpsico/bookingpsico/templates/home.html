@@ -12,6 +12,7 @@
             font-family: Arial, sans-serif;
             background: #f4f4f4;
             color: #333;
+            font-size: 14px; /* Adjusted font size for general text */
         }
         header {
             background: #7592b3;
@@ -31,7 +32,12 @@
             margin-top: 20px;
             box-shadow: 2px 2px 5px #cccccc;
         }
-        h1, h2 {
+        h1 {
+            font-size: 24px; /* Smaller than typical h1 to fit better in web context */
+            color: #333;
+        }
+        h2 {
+            font-size: 18px; /* Adjusted size */
             color: #333;
         }
         ul {
@@ -49,12 +55,11 @@
         <a class="navbar-brand" href="/bookingpsico/todas_las_reservas">Todas las Reservas</a>
         <a class="navbar-brand" href="/bookingpsico/terapias">Terapias</a>
         <a class="navbar-brand" href="/bookingpsico/terapeutas">Terapeutas</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/bookingpsico/login">Login</a>
                 </li>
@@ -67,7 +72,7 @@
     <div class="container mt-4">
         {% block content %}
         <header>
-                     <h1> PsicoAPP </h1>
+            <h1> PsicoAPP </h1>
             <h2>Encuentra tu camino hacia el bienestar Psicológico</h2>
         </header>
         <div class="card">
@@ -79,21 +84,21 @@
         <div class="card">
         <h2>Terapia Humanista</h2>
         </div>
-    <div class="card">
+        <div class="card">
         <h2>Terapia de Pareja</h2>
-    </div>
-    <div class="card">
+        </div>
+        <div class="card">
         <h2>Terapia Familiar</h2>
-    </div>
-    <div class="card">
+        </div>
+        <div class="card">
         <h2>Terapia de Grupo</h2>
-    </div>
-    <div class="card">
+        </div>
+        <div class="card">
         <h2>Terapia Gestalt</h2>
-    </div>
-    <div class="card">
+        </div>
+        <div class="card">
         <h2>Psicoterapia Integrativa</h2>
-    </div>
+        </div>
         {% endblock content %}
         <div class="card mt-4">
             <div class="card-body d-flex justify-content-between">
@@ -105,9 +110,4 @@
             </div>
         </div>        
     </div>
-    <!-- Bootstrap JS, Popper.js, and jQuery -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
-</html>
+    <!-- Bootstrap JS, Pop

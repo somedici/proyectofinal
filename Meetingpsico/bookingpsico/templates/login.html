@@ -16,12 +16,11 @@
         <div class="card mt-4">
             <div class="card-body">
                 <h5 class="card-title">Inicio de Sesión</h5>
-                <form action="/login"<form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Iniciar sesión</button>
-                    </form>
-                    
+                <form action="/login" method="post">
+                    {% csrf_token %}
+
+                </form>
+                    {{ form.as_p }}
                     <div class="form-group">
                         <label for="username">Nombre de Usuario:</label>
                         <input type="text" class="form-control" id="username" name="username" required>

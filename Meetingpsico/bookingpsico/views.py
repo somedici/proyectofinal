@@ -40,6 +40,10 @@ def terapeutas(request):
     return render(request, "terapeutas.html")
 
 def login_view(request):
+    if request.method == "GET":
+        contexto = {"LOGIN": LoginForm()}
+        return render(request, "login.html", contexto)
+    
     if request.method == 'POST':
         form = LoginForm(request.POST)
         if form.is_valid():
@@ -48,7 +52,6 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-            
                 return redirect('/bookingpsico/')
             else:
                 print("Error al registrarse")
