@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Reserva, Terapeuta
 from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from .forms import ReservaCreateForm, LoginForm
+from django.contrib.auth.forms import UserCreationForm
+
 
 def crear_reserva(request):
     if request.method == "GET":
@@ -41,7 +43,7 @@ def terapeutas(request):
 
 def login_view(request):
     if request.method == "GET":
-        contexto = {"LOGIN": LoginForm()}
+        contexto = {"": LoginForm()}
         return render(request, "login.html", contexto)
     
     if request.method == 'POST':
@@ -56,11 +58,7 @@ def login_view(request):
             else:
                 print("Error al registrarse")
                 pass
-    else:
-        form = LoginForm()
-    return render(request, 'login.html', {'form': form})
-
-
+  
 def todas_las_reservas(request):
     reservas = Reserva.objects.all()
     contexto_dict = {"todas_las_reservas": reservas}
@@ -75,3 +73,19 @@ def detail_view(request, booking_id):
     reserva = Reserva.objects.get(id=booking_id)
     contexto_dict = {"reserva": reserva}
     return render(request, "detail.html", contexto_dict)
+
+def register(request):
+      if request.method == 'POST':
+            form = UserCreationForm(request.POST)
+            if form.is_valid():
+                  email = form.cleaned_data['email']
+                  form.save()
+                  return render(request,"home.html" ,  {"mensaje":"Usuario Creado:)"})
+      else:   
+            form = UserCreationForm()     
+
+      return render(request,"registro.html" ,  {"form":form})
+
+def logout_view(request):
+    logout(request)
+    return redirect('home.hmtl')  
