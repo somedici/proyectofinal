@@ -14,5 +14,5 @@ urlpatterns = [
     path("bookingpsico/detail_view", detail_view, name = "detail_view"),
     path("bookingpsico/buscar/", search_view, name = "buscar_reservas"),
     path("bookingpsico/register/", register, name = "registro"),
-    path("bookingpsico/logout/", logout_view, name = "logout")
+    path("bookingpsico/logout/", logout_view, name = "logout"),
 ]

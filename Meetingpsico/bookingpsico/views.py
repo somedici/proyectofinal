@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import ReservaCreateForm, LoginForm
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib import messages
 
 def crear_reserva(request):
     if request.method == "GET":
@@ -43,7 +43,7 @@ def terapeutas(request):
 
 def login_view(request):
     if request.method == "GET":
-        contexto = {"": LoginForm()}
+        contexto = {"form": LoginForm()}
         return render(request, "login.html", contexto)
     
     if request.method == 'POST':
@@ -54,10 +54,11 @@ def login_view(request):
             user = authenticate(request, username=username, password=password)
             if user is not None:
                 login(request, user)
-                return redirect('/bookingpsico/')
+                return redirect('home')
             else:
                 print("Error al registrarse")
-                pass
+            return HttpResponse("Error: Nombre de usuario o contraseña incorrectos.")
+
   
 def todas_las_reservas(request):
     reservas = Reserva.objects.all()
@@ -75,17 +76,20 @@ def detail_view(request, booking_id):
     return render(request, "detail.html", contexto_dict)
 
 def register(request):
-      if request.method == 'POST':
-            form = UserCreationForm(request.POST)
-            if form.is_valid():
-                  email = form.cleaned_data['email']
-                  form.save()
-                  return render(request,"home.html" ,  {"mensaje":"Usuario Creado:)"})
-      else:   
-            form = UserCreationForm()     
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Usuario {username} registrado exitosamente.')
+            return redirect('login')
+    else:
+        form = UserCreationForm()
+    return render(request, 'registro.html', {'form': form})
 
-      return render(request,"registro.html" ,  {"form":form})
+
+
 
 def logout_view(request):
     logout(request)
-    return redirect('home.hmtl')  
+    return redirect('login')  
