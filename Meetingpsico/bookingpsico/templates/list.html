@@ -2,7 +2,7 @@
 {% extends 'home.html' %}
 
 {% block title %}
-    Reservas Guardadas
+Reservas Guardadas
 {% endblock title %}
 
 {% block content %}
@@ -13,29 +13,41 @@
     </header>
     <div class="card">
         <div class="card-body">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Usuario</th>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Tipo de Terapia</th>
-                        <th>Terapeuta</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for reserva in todas_las_reservas %}
-                    <tr>
-                        <td>{{ reserva.nombre_usuario }}</td>
-                        <td>{{ reserva.fecha }}</td>
-                        <td>{{ reserva.hora }}</td>
-                        <td>{{ reserva.tipo_terapia }}</td>
-                        <td>{{ reserva.terapeuta }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+            <form method="post" action="{% url 'todas_las_reservas' %}">
+                {% csrf_token %}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Usuario</th>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Tipo de Terapia</th>
+                            <th>Terapeuta</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for reserva in todas_las_reservas %}
+                        <tr>
+                            <td>{{ reserva.nombre_usuario }}</td>
+                            <td>
+                                <input type="date" name="fecha_{{ reserva.id }}" value="{{ reserva.fecha|date:"Y-m-d" }}">
+                            </td>
+                            <td>
+                                <input type="time" name="hora_{{ reserva.id }}" value="{{ reserva.hora|time:"H:i" }}">
+                            </td>
+                            <td>{{ reserva.tipo_terapia }}</td>
+                            <td>{{ reserva.terapeuta }}</td>
+                            <td>
+                                <button type="submit" class="btn btn-primary" name="update" value="{{ reserva.id }}">Actualizar</button>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>
 {% endblock content %}
+
