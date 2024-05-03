@@ -4,87 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %} Psicología {% endblock title %}</title>
-    <!-- Bootstrap CSS CDN (Bootstrap 4 used as an example) -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <!-- Custom Styles -->
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f7eeeea1;
-            color: #333;
-            font-size: 16px;
+            font-family: 'Tahoma', Roboto, tahoma, tahoma;
+            background-color: #ffffff;
+            color: #202124;
+            font-size: 14px;
         }
         header {
-            background-color:  #ffb3d13b;
-            color: #1b1717;
+            background-color: #ffffff;
+            color: #202124;
             padding: 20px;
             text-align: center;
+            border-bottom: 1px solid #dadce0;
         }
         .container {
-            width: 80%;
-            margin: auto;
+            width: 90%;
+            margin: 20px auto;
             overflow: hidden;
         }
         .card {
             background-color: #ffffff;
-            border: 1px solid #ddd;
+            border: 1px solid #e0e0e0;
             padding: 20px;
             margin-top: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border-radius: 10px;
+            box-shadow: none;
+        }
+        h1, h2 {
+            color: #202124;
         }
         h1 {
-            font-size: 36px;
-            color: #333;
+            font-size: 24px;
+            margin-bottom: 0;
         }
         h2 {
-            font-size: 24px;
-            color: #333;
-            margin-top: 0; 
+            font-size: 18px;
+            margin-top: 10px;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            margin-bottom: 10px;
+        .navbar {
+            background-color: #6c757d1b;
+            border-bottom: 1px solid #dadce0;
         }
         .nav-link {
-            color: hsla(336, 100%, 49%, 0.949);
-            font-weight: bold;
+            color: #5f6368;
         }
         .nav-link:hover {
-            color: #ffb3d1;
+            color: #1a73e8;
         }
         .dropdown-menu {
-            background-color: #f9f9f9;
+            border-color: #dadce0;
         }
-        .dropdown-item {
-            color: hsla(0, 0%, 4%, 0.949);;
+        .dropdown-item:hover {
+            background-color: #f1f3f4;
         }
         .btn-primary {
-            background-color: #ffb3d18f;
-            border-color:#ffb3d1;
-            color: #0c0a0a;
+            background-color: #1a73e8;
+            border-color: #1a73e8;
+            color: #ffffff;
         }
         .btn-primary:hover {
-            background-color:#ffb3d18f;
-            border-color: #f698bd;
+            background-color: #176abe;
+            border-color: #1565c0;
+        }
+        .carousel-control-prev-icon,
+        .carousel-control-next-icon {
+            background-color: #dadce0;
+            border-radius: 50%;
+        }
+        footer {
+            background-color: #f5f5f5;
+            border-top: 1px solid #e4e4e4;
+            color: #70757a;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        footer a {
+            color: #1a73e8;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <button class="navbar-toggler mr-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/bookingpsico/terapias">Acerca de PsicoAPP</a>
+        <a class="navbar-brand" href="/bookingpsico/about">Acerca de PsicoAPP</a>
         <div class="collapse navbar-collapse" id="navbarNav">
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/bookingpsico/register">Registrarse</a>
-        </li>
             <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/bookingpsico/register">Registrarse</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Opciones
@@ -98,13 +112,13 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/bookingpsico/login">Login</a>
-                    <li class="nav-item">
-                     <a class="nav-link" href="/bookingpsico/">Avatar</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/bookingpsico/">Avatar</a>
                 </li>
-                   </ul>
+            </ul>
         </div>
-    </nav>    
+    </nav>
     <div class="container mt-4">
         {% block content %}
         <header>
@@ -113,45 +127,57 @@
         </header>
         <div id="therapiesCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <div class="card">
-                        <h2>Terapia Cognitivo-Conductual (TCC)</h2>
+                <div id="therapiesCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <div class="card">
+                                <h2>Terapia Cognitivo-Conductual (TCC)</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia Psicodinámica</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia Humanista</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia de Pareja</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia Familiar</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia de Grupo</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Terapia Gestalt</h2>
+                            </div>
+                        </div>
+                        <div class="carousel-item">
+                            <div class="card">
+                                <h2>Psicoterapia Integrativa</h2>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia Psicodinámica</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia Humanista</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia de Pareja</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia Familiar</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia de Grupo</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Terapia Gestalt</h2>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <div class="card">
-                        <h2>Psicoterapia Integrativa</h2>
-                    </div>
+            <a class="carousel-control-prev" href="#therapiesCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+                    </a>
+            <a class="carousel-control-next" href="#therapiesCarousel" role="button" data-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="sr-only">Next</span>
+                    </a>
                 </div>
             </div>
             <a class="carousel-control-prev" href="#therapiesCarousel" role="button" data-slide="prev">
@@ -164,11 +190,18 @@
             </a>
         </div>
         {% endblock content %}
-    </div>    
     </div>
-    <!-- Bootstrap JS, Popper.js, and jQuery (if needed) -->
+    <footer class="text-muted py-4">
+        <div class="container">
+            <p class="float-right">
+                <a href="#">Volver arriba</a>
+            </p>
+            <p>© 2024 PsicoAPP, Inc. | <a href="#">Privacidad</a> - <a href="#">Términos</a></p>
+            <p>¿Necesitas ayuda? <a href="/contact">Contacta con nosotros</a></p>
+        </div>
+    </footer>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html> 
+</html>

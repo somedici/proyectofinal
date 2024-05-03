@@ -25,3 +25,6 @@ class UserRegisterForm(forms.ModelForm):
         fields = ['email', 'password1', 'password2']
         help_texts = {k: "" for k in fields}  
 
+class SearchForm(forms.Form):
+    fecha = forms.DateField(label='Fecha')
+    tipo_terapia = forms.CharField(label='Tipo de Terapia')

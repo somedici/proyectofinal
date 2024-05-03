@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import ReservaCreateForm, LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
+from .forms import SearchForm
 
 def crear_reserva(request):
     if request.method == "GET":
@@ -59,53 +60,10 @@ def login_view(request):
                 print("Error al registrarse")
             return HttpResponse("Error: Nombre de usuario o contraseña incorrectos.")
 
-  
-from django.shortcuts import render, redirect
-from .models import Reserva
-from django.contrib import messages
-
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from .models import Reserva
-from django.contrib import messages
-
 def todas_las_reservas(request):
-    if request.method == 'POST':
-        reserva_id = request.POST.get('reserva_id')
-        if reserva_id:
-            try:
-                reserva = Reserva.objects.get(id=reserva_id)
-                reserva.fecha = request.POST.get('fecha')
-                reserva.hora = request.POST.get('hora')
-                reserva.save()
-                messages.success(request, 'Reserva actualizada correctamente.')
-            except Reserva.DoesNotExist:
-                messages.error(request, 'Reserva no encontrada.')
-                return redirect('todas_las_reservas')
-            except Exception as e:
-                messages.error(request, f'Error al actualizar la reserva: {e}')
-                return redirect('todas_las_reservas')
-            return redirect('todas_las_reservas')
-        else:
-            messages.error(request, 'ID de reserva no proporcionado.')
-            return redirect('todas_las_reservas')
-    else:
-        reservas = Reserva.objects.all()
-        return render(request, "list.html", {"todas_las_reservas": reservas})
-
-    # Si algo sale mal y ningún bloque se ejecuta, puedes devolver un HttpResponse de error o redirigir
-    return HttpResponse("Operación no permitida", status=405)  # O alguna página de error o mensaje apropiado
-
-
-def search_view(request, nombre):
-    reservas_usuario = Reserva.objects.filter(nombre_usuario=nombre).all()
-    contexto_dict = {"reservas": reservas_usuario}
+    reservas = Reserva.objects.all()
+    contexto_dict = {"todas_las_reservas": reservas}
     return render(request, "list.html", contexto_dict)
-
-def detail_view(request, booking_id):
-    reserva = Reserva.objects.get(id=booking_id)
-    contexto_dict = {"reserva": reserva}
-    return render(request, "detail.html", contexto_dict)
 
 def register(request):
     if request.method == 'POST':
@@ -119,9 +77,37 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'registro.html', {'form': form})
 
-
-
-
 def logout_view(request):
     logout(request)
     return redirect('login')  
+
+def search_view(request, nombre):
+    reservas_usuario = Reserva.objects.filter(nombre_usuario=nombre).all()
+    contexto_dict = {"reservas": reservas_usuario}
+    return render(request, "form_view.html", contexto_dict)
+
+def search_view(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            fecha = form.cleaned_data['fecha']
+            tipo_terapia = form.cleaned_data['tipo_terapia']
+            # Realizar la búsqueda de terapeutas disponibles según los criterios
+            terapeutas_disponibles = Terapeuta.objects.filter(
+                reservas_fecha=fecha,
+                tipo_terapia=tipo_terapia
+            ).distinct()
+            return render(request, 'search_results.html', {'terapeutas': terapeutas_disponibles})
+    else:
+        form = SearchForm()
+    return render(request, 'search.html', {'search_form': form})
+
+
+def base(request):
+   return render(request,"about.html")
+
+
+def detail_view(request, booking_id):
+    reserva = Reserva.objects.get(id=booking_id)
+    contexto_dict = {"reserva": reserva}
+    return render (request,"detail.html", contexto_dict )

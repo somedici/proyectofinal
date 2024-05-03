@@ -1,0 +1,25 @@
+{% extends 'home.html' %}
+
+{% block title %}
+    Resultados de la Búsqueda
+{% endblock title %}
+
+{% block content %}
+    <div class="container mt-4">
+        <header>
+            <h1>Resultados de la Búsqueda</h1>
+            <p>Terapeutas Disponibles:</p>
+        </header>
+        <div class="card">
+            <div class="card-body">
+                <ul>
+                    {% for terapeuta in terapeutas %}
+                        <li>{{ terapeuta.nombre }}</li>
+                    {% empty %}
+                        <li>No se encontraron terapeutas disponibles para la búsqueda.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+{% endblock content %}
