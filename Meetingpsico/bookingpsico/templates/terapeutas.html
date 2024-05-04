@@ -1,5 +1,7 @@
 {% extends 'home.html' %}
 
+{% load static %}
+
 {% block title %}
     Terapeutas
 {% endblock title %}
@@ -11,25 +13,25 @@
     <div class="container mt-4">
         <div class="card-deck">
             <div class="card">
-                <img src="terapeuta1.jpg" class="card-img-top" >
+                <img src="{% static 'terapeuta1.jpg' %}" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title">Dra. María López</h5>
-            <p class="card-text"> Psicóloga Especializada en Terapia Cognitivo-Conductual
+                    <p class="card-text">Psicóloga Especializada en Terapia Cognitivo-Conductual</p>
                     <a href="https://calendly.com/es" class="btn btn-primary" target="_blank">Seleccionar</a>
                 </div>
             </div>
             <div class="card">
-                <img src="terapeuta2.jpg" class="card-img-top">
+                <img src="{% static 'terapeuta2.jpg' %}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">Dra. Ana Martínez</h5>
-                    <p class="card-text">Terapeuta Familiar y Sistémica </p>
+                    <h5 class="card-title">Lic. Ana Martínez</h5>
+                    <p class="card-text">Terapeuta Familiar y Sistémica</p>
                     <a href="https://calendly.com/es" class="btn btn-primary" target="_blank">Seleccionar</a>
                 </div>
             </div>
             <div class="card">
-                <img src="terapeuta3.jpg" class="card-img-top">
+                <img src="{% static 'terapeuta3.jpg' %}" class="card-img-top">
                 <div class="card-body">
-                    <h5 class="card-title">Dra. Manuela Shaw </h5>
+                    <h5 class="card-title">Lic. Manuela Colombo</h5>
                     <p class="card-text">Licenciada en Psicoterapia Integrativa</p>
                     <a href="https://calendly.com/es" class="btn btn-primary">Seleccionar</a>
                 </div>

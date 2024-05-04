@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+
+{% block title %}
+    Resultados de la Búsqueda
+{% endblock title %}
+
+{% block content %}
+
+    <div class="container mt-4">
+        <header>
+            <h1>Contáctanos</h1>
+            <p>Envíanos tus preguntas y comentarios.</p>
+        </header>
+        <div class="card">
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Aquí va tu pie de página -->
+</body>
+</html>
+{% endblock content %}

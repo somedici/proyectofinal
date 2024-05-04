@@ -9,6 +9,14 @@
     <header>
         <h1>Detalle de la Reserva</h1>
     </header>
+
+    <!-- Agrega el mensaje de éxito aquí -->
+    {% if messages %}
+    <div class="alert alert-success" role="alert">
+        {{ messages }}
+    </div>
+    {% endif %}
+
     <div class="card">
         <div class="card-body">
             <p><strong>Nombre del Paciente</strong> {{ reserva.nombre_usuario }}</p>

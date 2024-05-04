@@ -28,3 +28,8 @@ class UserRegisterForm(forms.ModelForm):
 class SearchForm(forms.Form):
     fecha = forms.DateField(label='Fecha')
     tipo_terapia = forms.CharField(label='Tipo de Terapia')
+
+class ContactForm(forms.Form):
+    nombre = forms.CharField(label='Nombre', max_length=100)
+    email = forms.EmailField(label='Email', max_length=100)
+    mensaje = forms.CharField(label='Mensaje', widget=forms.Textarea)

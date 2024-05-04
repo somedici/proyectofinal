@@ -7,7 +7,28 @@ from .forms import ReservaCreateForm, LoginForm
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import SearchForm
+from django.contrib.auth.decorators import login_required
+from .forms import ContactForm
 
+def login_view(request):
+    if request.method == "GET":
+        contexto = {"form": LoginForm()}
+        return render(request, "login.html", contexto)
+    
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+            else:
+                print("Error al registrarse")
+            return HttpResponse("Error: Nombre de usuario o contraseña incorrectos.")
+
+@login_required
 def crear_reserva(request):
     if request.method == "GET":
         contexto = {"create_form": ReservaCreateForm()}
@@ -33,6 +54,9 @@ def crear_reserva(request):
             contexto = {"create_form": form }
             return render(request, "reservas_form.html", contexto)
 
+def redirect_to_login(request):
+    return redirect('login')
+
 def home_view(request):
     return render(request,"home.html")
 
@@ -41,24 +65,6 @@ def terapias_view(request):
 
 def terapeutas(request):
     return render(request, "terapeutas.html")
-
-def login_view(request):
-    if request.method == "GET":
-        contexto = {"form": LoginForm()}
-        return render(request, "login.html", contexto)
-    
-    if request.method == 'POST':
-        form = LoginForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
-            user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect('home')
-            else:
-                print("Error al registrarse")
-            return HttpResponse("Error: Nombre de usuario o contraseña incorrectos.")
 
 def todas_las_reservas(request):
     reservas = Reserva.objects.all()
@@ -81,11 +87,6 @@ def logout_view(request):
     logout(request)
     return redirect('login')  
 
-def search_view(request, nombre):
-    reservas_usuario = Reserva.objects.filter(nombre_usuario=nombre).all()
-    contexto_dict = {"reservas": reservas_usuario}
-    return render(request, "form_view.html", contexto_dict)
-
 def search_view(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
@@ -102,12 +103,30 @@ def search_view(request):
         form = SearchForm()
     return render(request, 'search.html', {'search_form': form})
 
+def contact(request):
+    return render(request, "contact.html")
 
-def base(request):
+def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            return render(request, 'contact_success.html')
+    else:
+        form = ContactForm()
+    return render(request, 'contact.html', {'form': form})
+
+
+def about(request):
    return render(request,"about.html")
 
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
 
 def detail_view(request, booking_id):
-    reserva = Reserva.objects.get(id=booking_id)
+    reserva = get_object_or_404(Reserva, id=booking_id)
     contexto_dict = {"reserva": reserva}
-    return render (request,"detail.html", contexto_dict )
+    editada = True  
+    if editada:
+        messages.success(request, '¡La reserva se ha editado exitosamente!')
+
+    return render(request, "detail.html", contexto_dict)
