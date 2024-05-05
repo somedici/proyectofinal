@@ -28,7 +28,7 @@ Reservas Guardadas
                     <tbody>
                         {% for reserva in todas_las_reservas %}
                         <tr>
-                            <td>{{ reserva.nombre_usuario }}</td>
+                            <td>{{ reserva.usuario }}</td>
                             <td>
                                 <input type="date" name="fecha_{{ reserva.id }}" value="{{ reserva.fecha|date:"Y-m-d" }}">
                             </td>
@@ -49,4 +49,3 @@ Reservas Guardadas
     </div>
 </div>
 {% endblock content %}
-

@@ -1,7 +1,7 @@
 from django.urls import path
 from django.http import HttpResponse
 
-from .views import home_view, crear_reserva, terapeutas,login_view, terapias_view, detail_view, search_view, todas_las_reservas, register, logout_view, about, redirect_to_login, contact
+from .views import home_view, crear_reserva, terapeutas,login_view, terapias_view, detail_view, search_view, todas_las_reservas, register, logout_view, about, redirect_to_login, contact, editar_reserva
 
 from django.urls import path
 from . import views
@@ -20,4 +20,5 @@ urlpatterns = [
     path('bookingpsico/logout/', views.logout_view, name='logout'),
     path('bookingpsico/about/', views.about, name='about'),
     path('bookingpsico/contact/', views.contact, name='contacta'),
+    path('bookingpsico/editar_reserva/<int:reserva_id>/', views.editar_reserva, name='editar_reserva'),
 ]

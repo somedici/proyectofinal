@@ -8,7 +8,8 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .forms import SearchForm
 from django.contrib.auth.decorators import login_required
-from .forms import ContactForm
+from .forms import ContactForm, ReservaCreateForm
+from django.shortcuts import get_object_or_404
 
 def login_view(request):
     if request.method == "GET":
@@ -27,7 +28,6 @@ def login_view(request):
             else:
                 print("Error al registrarse")
             return HttpResponse("Error: Nombre de usuario o contraseña incorrectos.")
-
 @login_required
 def crear_reserva(request):
     if request.method == "GET":
@@ -37,23 +37,23 @@ def crear_reserva(request):
     elif request.method == 'POST':
         form = ReservaCreateForm(request.POST)
         if form. is_valid ():
-            nombre_usuario = form.cleaned_data['nombre_usuario']
+            usuario = form.cleaned_data['usuario']
             fecha = form.cleaned_data['fecha']
             hora = form.cleaned_data['hora']
             tipo_terapia = form.cleaned_data['tipo_terapia']
             terapeuta = form.cleaned_data['terapeuta']
             nueva_reserva = Reserva(
-                nombre_usuario=nombre_usuario, 
+                usuario=usuario, 
                 fecha=fecha, 
                 hora=hora, 
                 tipo_terapia=tipo_terapia, 
                 terapeuta=terapeuta)
             nueva_reserva.save()
             return detail_view(request, nueva_reserva.id)
-        else:
-            contexto = {"create_form": form }
-            return render(request, "reservas_form.html", contexto)
-
+    else:
+        contexto = {"create_form": form }
+        return render(request, "reservas_form.html", contexto)
+    
 def redirect_to_login(request):
     return redirect('login')
 
@@ -66,8 +66,9 @@ def terapias_view(request):
 def terapeutas(request):
     return render(request, "terapeutas.html")
 
+@login_required
 def todas_las_reservas(request):
-    reservas = Reserva.objects.all()
+    reservas = Reserva.objects.filter(usuario=request.user)
     contexto_dict = {"todas_las_reservas": reservas}
     return render(request, "list.html", contexto_dict)
 
@@ -115,12 +116,8 @@ def contact(request):
         form = ContactForm()
     return render(request, 'contact.html', {'form': form})
 
-
 def about(request):
    return render(request,"about.html")
-
-from django.shortcuts import get_object_or_404
-from django.contrib import messages
 
 def detail_view(request, booking_id):
     reserva = get_object_or_404(Reserva, id=booking_id)
@@ -130,3 +127,14 @@ def detail_view(request, booking_id):
         messages.success(request, '¡La reserva se ha editado exitosamente!')
 
     return render(request, "detail.html", contexto_dict)
+
+def editar_reserva(request, reserva_id):
+    reserva = get_object_or_404(Reserva, id=reserva_id)
+    if request.method == 'POST':
+        form = ReservaCreateForm(request.POST, instance=reserva)
+        if form.is_valid():
+            form.save()
+            return redirect('todas_las_reservas')
+    else:
+        form = ReservaCreateForm(instance=reserva)
+    return render(request, 'editar_reserva.html', {'form': form})

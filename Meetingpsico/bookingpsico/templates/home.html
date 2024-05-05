@@ -111,12 +111,18 @@
                         <a class="dropdown-item" href="/bookingpsico/terapeutas">Terapeutas</a>
                     </div>
                 </li>
+                {% if user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/bookingpsico/login">Login</a>
-                </li>
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                    <a class="nav-link" href="">{{ user }}</a>
+                </li>   
+                {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" href="/bookingpsico/">Avatar</a>
+                    <a class="nav-link" href="{% url 'login' %}">Login</a>
                 </li>
+                {% endif %}
+                </ul>
+                
             </ul>
         </div>
     </nav>
@@ -125,8 +131,7 @@
         <header>
             <h1>PsicoAPP</h1>
             <h2>Encuentra tu camino hacia el bienestar Psicológico</h2>
-            <img src="{% static 'background.jpg' %}" alt="Imagen descriptiva" class="img-fluid">
-        </header>
+            </header>
         <div id="therapiesCarousel" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
@@ -178,7 +183,12 @@
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
             </a>
-        </div>
+            <div class="container mt-4">
+                        <div class="text-center"> 
+                    <img src="{% static 'background.jpg' %}" alt="Imagen descriptiva" class="img-fluid">
+                </div>
+            </div>
+                    </div>
         {% endblock content %}
          <footer class="text-muted py-4">
         <div class="container">
