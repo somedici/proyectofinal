@@ -2,8 +2,6 @@ PsicoAPP
 
 Mi proyecto final se denomina: "PsicoAPP". Su objetivo principal es proporcionar una primera aproximación a una aplicación para reservar sesiones con terapeutas en línea. La idea surgió con la intención de ofrecer un espacio accesible para el cuidado de la salud mental, accesible para todos, y al mismo tiempo dar a conocer las diversas opciones terapéuticas disponibles.
 
-Psico APP es la respuesta integral al cuidado de la salud mental, especialmente dirigida a aquellos que enfrentan limitaciones económicas, de accesibilidad. El propósito es democratizar el acceso a una variedad de terapias, espacios terapéuticos y profesionales, ofreciéndoles de manera conveniente y accesible a través de plataformas online.
-
 En un contexto marcado por avances tecnológicos, inestabilidad económica y cambios globales, reconocemos la importancia crítica de priorizar la salud mental. Psico App es una plataforma que se enfoca en brindar herramientas para identificar y abordar cualquier síntoma o situación de riesgo que pueda afectar tanto al usuario como a sus seres queridos.
 
 Además, como parte de la misión es proporcionar un apoyo integral, con la idea de integrar una función de emergencia. Este botón de emergencia permite acceder a un centro telefónico especializado, donde se brinda atención gratuita en situaciones de crisis, como ataques de pánico, ideación suicida u otras emergencias similares. (aún está en proceso de desarrollo)
